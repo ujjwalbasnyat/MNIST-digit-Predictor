@@ -58,10 +58,10 @@ The trained model is deployed using:
 ## ⚙️ Installation
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/project-name.git
-cd project-name
+git clone https://github.com/ujjwalbasnyat/MNIST-digit-Predictor.git
+cd MNIST
 
-# Create virtual environment (optional)
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 
