@@ -9,11 +9,12 @@ from fastapi.middleware.cors import CORSMiddleware
 # Initial fastAPI app
 app = FastAPI()
 
+origin = ['https://mnist-digit-predictor.vercel.app']
 
 # Allow frontend origin
 app.add_middleware(
    CORSMiddleware,
-   allow_origins = ['https://mnist-digit-predictor.vercel.app', "http://localhost:3000", 'http://192.168.0.100:3000'],
+   allow_origins = origin,
    allow_credentials = True,
    allow_methods = ['*'],
    allow_headers = ['*'],
