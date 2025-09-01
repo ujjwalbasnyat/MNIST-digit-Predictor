@@ -84,7 +84,7 @@ export default function Home() {
     const formData = new FormData()
     formData.append("file", blob, "digit.png");
 
-    const res = await fetch("http://127.0.0.1:8000/predict/", {method : "POST", body: formData});
+    const res = await fetch("https://mnist-digit-predictor-5iml.onrender.com/predict", {method : "POST", body: formData});
 
     const result = await res.json();
     setPrediction(result)

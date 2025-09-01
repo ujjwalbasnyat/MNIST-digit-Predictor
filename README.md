@@ -1,46 +1,43 @@
 # MNIST Digit-Predictor
 
 ## 📌 Overview
-This project implements a digit classification model using `LeNet-5` architecture on the MNIST dataset. This CNN model is trained with 60,000
-handwritten digits (0-9) grayscale image of 32x32 and successfully tested with the accuracy of 99.07% over 10000 handwritten digits. I used PyTorch framework to build the mode.
-I used `torchvision` to load the datset, transforms to transform the data. Numpy for the mathematical computation and `torch.nn` for neural network.
+This project implements a digit classification model using the LeNet-5 architecture on the MNIST dataset. The Convolutional Neural Network (CNN) model is trained on 60,000 handwritten grayscale digits (0-9), each resized to 32x32 pixels, and achieves 99.07% accuracy on the 10,000-digit test set.
 
-At first, i loaded the MNIST dataset then after resized, transformed into tensor as tensor is as same as numpy but support GPU and finally Normalized the data. 
-I introduced CNN model with 8 layers.
+The model is built with PyTorch, using torchvision for dataset loading and transformations, and numpy for mathematical computations.
 
-introduced first convolution layer. Convolution layer helps to convolv the input image data of size 32x32 using 6 kernels of size 5x5 each. added ReLU activation function to non-linearlity. And Kernel passed the 28x28x6 Tensor for pooling.
-After maxpooling First Convolutional layer passed the output of size 14x14x6. 
+## Workflow
 
-In second Convolutional Layer, input of size (14x14x6) is convolved by 16 kernels and stride 1, introduced second ReLU activation function and then Max pooled with the 2x2 kernel with stride 2. Layer 2 passed the output of size 5x5x16.
+1. Load the MNIST dataset.
 
-Now can reached to the  Fully connected layer. It is also called dense layer which connects every inputs(here. 5x5x16) to every output neurons.
-we use fully connected layer to reduce the number of parameter while training the model. 
+2. Resize images to 32x32 and transform them into tensors (GPU-compatible).
 
-I have 3 fully connected layers with different number of inputs and outputs. First fully connected layer get input of size 5x5x16. it is a linear layer pass the output of 120 units to the ReLU Function which help in capturing the non-linearity.
+3. Normalize the data.
 
-Second fc layer gets and inputs of 120 and pass output of size 84 and finally  last fully connected layer(softmax layer) passes the output of 10 difference digits classes (0-9).
+4. Define the LeNet-5 CNN architecture with 8 layers.
 
-For cost computation implemented the Cross entropy loss then back propagated and optimized with the Adam optimizer with is best among the optimizers.
+5. Train the model using Cross-Entropy Loss and Adam optimizer.
 
-Oh the main thing not to forget is Batch size. Batch size improves computational effieciency & parallelism. i defined 64 as batch size and ran 10 epochs for training.
+6. Test the model for accuracy.
 
-Model is tested over 10000 test dataset, where model performed outstanding performance with 99.07% accuracy.
-
-Lastly, Deployed model in FastAPI backend and for user interface used Nextjs. Frontend deployed in vercel.
-User → Next.js Frontend → FastAPI Backend → ML Model
-
-- Model architecture: LeNet-5 (Convolutional Neural Network)
-- Dataset: MNIST(handwritten digit dataset)
-- Input size : 32x32
-- Framework: PyTorch
+7. Deploy via FastAPI backend and Next.js frontend.
 
 ## 🏗 Model Architecture (LeNet-5)
-1. Input layer: 32x32 grayscale image
-2. Conv layer: 6 filter, 5x5 kernels, 1 stride, padding 0, Batch Normalization, ReLU activation function, Max Pooling(kernel size 2, stride 2, max pooling1)
-3. Convolution layer ( 16 filters, 5x5 kernels, ReLU activation, Max Pooling2)
-4. Fully Connected layer1: 120 units , ReLU
-5. Fully Connect layer2: 84 units, ReLU
-6. Fully Connect layer3: 10 classes, softmax function
+1. Input Layer: 32x32 grayscale image
+2. Conv Layer 1:
+    - 6 filters, 5x5 kernels, stride 1, padding 0
+    - Batch Normalization
+    - ReLU activation
+    - Max Pooling (2x2) → Output size: 14x14x6
+3. Conv Layer 2:
+    - 16 filters, 5x5 kernels, stride 1
+    - ReLU activation
+    - Max Pooling (2x2) → Output size: 5x5x16
+
+4. Fully Connected Layer 1: 120 units, ReLU
+5. Fully Connected Layer 2: 84 units, ReLU
+6. Fully Connected Layer 3: 10 classes, Softmax
+
+Fully connected layers reduce the number of parameters while capturing non-linearity.
 
 ## 🚀 Training
 - Loss Function: Cross Entropy Loss
